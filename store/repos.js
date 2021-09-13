@@ -25,13 +25,13 @@ const actions = {
             const result = await repos.getList();
 
             if (result) {
-                commit('setBackend', result);
+                commit('setData', result);
                 return result;
             } else {
                 throw result;
             }
         } catch (error) {
-
+            console.log(error)
         }
     },
 
@@ -41,7 +41,7 @@ const actions = {
 };
 
 const mutations = {
-    setBackend(state, data) {
+    setData(state, data) {
         state.items = data;
     },
 
