@@ -1,5 +1,17 @@
 # tech-test
 
+This project allows to interact with the github API.
+We will be able to retrieve the last 100 public repositories 
+and thus be able to retrieve languages that are used, 
+making sorting and searching accurate .
+
+## Requirements 
+- Required
+- Nodejs
+- Vuejs
+- package management (npm, yarn ...)
+
+
 ## Build Setup
 
 ```bash
