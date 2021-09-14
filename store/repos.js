@@ -70,6 +70,8 @@ const actions = {
 const mutations = {
     setData(state, data) {
         state.items = data;
+        sessionStorage.setItem('repos', JSON.stringify(data));
+
     },
     setLines(state, payload) {
         //state.items[payload.item]['lines'] = payload.lines
