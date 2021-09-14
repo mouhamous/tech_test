@@ -6,6 +6,10 @@
 # install dependencies
 $ npm install
 
+# Add TOKEN variable in environment variable
+# Add your token ex: TOKEN=GithubToken
+$ echo TOKEN= > .env
+
 # serve with hot reload at localhost:3000
 $ npm run dev
 
