@@ -4,13 +4,16 @@ import repos from '../api/index';
 const getDefaultState = () => {
     return {
         items: [],
-        lines: []
+        lines: [],
+        languages: []
     }
 }
 
 const state = () => ({
     items: [],
-    lines: []
+    lines: [],
+    languages: []
+
 });
 
 const getters = {
@@ -20,6 +23,10 @@ const getters = {
     getLines: (state, getters, rootState) => {
         return state.lines
     },
+    getLanguages: (state, getters, rootState) => {
+        return state.languages
+    },
+
 
 
 };
@@ -37,9 +44,14 @@ const actions = {
                         //result[item]['lines'] = lines
                         //console.log(lines)
                         //let payload = { 'item': item, 'lines': lines }
-                    let payload = { 'id': result[item].id, 'lines': lines }
-                        //console.log(result[item])
-                    commit('setLines', payload)
+                    let payload_lines = { 'id': result[item].id, 'lines': lines }
+                    commit('setLines', payload_lines)
+
+                    const languages = await repos.getLanguage(result[item].languages_url)
+                    let payload_languages = { 'id': result[item].id, 'languages': languages }
+                        //console.log(languages)
+                    commit('setLanguages', payload_languages)
+
                 }
                 return result;
             } else {
@@ -64,6 +76,10 @@ const mutations = {
         //let d = {}
         //d[payload.id] = payload.lines
         state.lines.push(payload)
+    },
+
+    setLanguages(state, payload) {
+        state.languages.push(payload)
     },
 
 

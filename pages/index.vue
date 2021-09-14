@@ -8,10 +8,20 @@
       <button @click="search">search</button>
     </div>
     <div v-for="item in getItems" :key="item.id">
-      <p>
+      <!-- lines number section -->
+
+      <div>
         - <a :href="item.html_url">  {{ item.full_name }}</a> : <span v-if="lines(item.id)">lines {{lines(item.id).lines > 0 ? lines(item.id).lines : 0}} </span> 
-        <!-- lines {{ getLang(item.languages_url) }} -->
-      </p>
+      </div>
+      
+      <!-- Languages section -->
+      <div>
+        <p>
+          Languages: <span v-if="languages(item.id)">
+            <em v-for="(value, key) in languages(item.id).languages" :key="key" >{{ key }},</em>
+          </span>
+        </p> 
+      </div>
     </div>
   </div>
 </template>
@@ -32,21 +42,23 @@ export default {
   computed:{
     ...mapGetters({
       getItems:'repos/getItems',
-      getLines: 'repos/getLines'
+      getLines: 'repos/getLines',
+      getLanguage: 'repos/getLanguages'
     }),
   },
     
 
   methods:{
-    getLang(language_url){
-       repos.getLanguage(language_url)
-    },
-  
     search(query){
       this.$router.push({name: 'search', query: {q: this.query}});
     },
     lines(item_id){
       let data = this.getLines.find( ({ id }) => id === item_id )
+      return data
+    },
+
+    languages(item_id){
+      let data = this.getLanguage.find( ({ id }) => id === item_id )
       return data
     }
   },
