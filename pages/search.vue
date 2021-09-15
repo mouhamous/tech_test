@@ -1,22 +1,28 @@
 <template>
     <div>
       <div>Results</div>
-
-      <div v-for="item in results" :key="item.id">
-          <div >
-            - <a :href="item.html_url">  {{ item.full_name }}</a> :<span v-if="lines(item.id)">lines {{lines(item.id).lines > 0 ? lines(item.id).lines : 0}} </span> 
-          </div>
-
-          <!-- Languages section -->
-          <div>
-            <p>
-                Languages: <span v-if="languages(item.id)">
-                <em v-for="(value, key) in languages(item.id).languages" :key="key" >{{ key }},</em>
-              </span>
-            </p> 
-          </div>
+      <div class="pt">
+        <NuxtLink :to="{name: 'index'}">
+          <button >Go back</button>
+        </NuxtLink>
       </div>
       
+      <div class="pt">
+        <div v-for="item in results" :key="item.id">
+            <div >
+              - <a :href="item.html_url">  {{ item.full_name }}</a> :<span v-if="lines(item.id)">lines {{lines(item.id).lines > 0 ? lines(item.id).lines : 0}} </span> 
+            </div>
+
+            <!-- Languages section -->
+            <div>
+              <p>
+                  Languages: <span v-if="languages(item.id)">
+                  <em v-for="(value, key) in languages(item.id).languages" :key="key" >{{ key }},</em>
+                </span>
+              </p> 
+            </div>
+        </div>
+      </div>
     </div>
 
     
@@ -40,6 +46,7 @@ export default {
       getLines: 'repos/getLines',
       getLanguage: 'repos/getLanguages'
     }),
+    
   },
 
   methods:{
@@ -70,3 +77,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.pt{
+  padding-top: 1em;
+}
+</style>
