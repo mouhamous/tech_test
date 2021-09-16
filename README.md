@@ -32,6 +32,7 @@ $ npm run start
 # generate static project
 $ npm run generate
 ```
+To generate a token follow this link [github generate token](https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token)
 
 For detailed explanation on how things work, check out the [documentation](https://nuxtjs.org).
 
